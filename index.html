@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THAT FORGED MT | Yamaha MT-15</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg-black: #050505;
+            --bg-card: #121212;
+            --primary-purple: #9d4edd;
+            --secondary-purple: #5a189a;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        /* --- HERO / BIO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            /* BACKGROUND PHOTO - Replace 'background.jpg' with your actual file name */
+            background: url('p7.jpeg') no-repeat center center/cover;
+        }
+
+        /* Dark overlay to ensure text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.85), rgba(5,5,5,0.95));
+            z-index: 1;
+        }
+
+        .bio-container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            background: rgba(20, 20, 20, 0.85);
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid var(--secondary-purple);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);
+            backdrop-filter: blur(8px);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+        }
+
+        .tagline {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .bio-text {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-bottom: 35px;
+            text-align: justify;
+            text-align-last: center;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--secondary-purple), var(--primary-purple));
+            color: white;
+            border: none;
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(157, 78, 221, 0.7);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-purple);
+            color: white;
+        }
+
+        /* --- SECTIONS GENERAL --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: white;
+            display: inline-block;
+            border-bottom: 3px solid var(--primary-purple);
+            padding-bottom: 10px;
+        }
+
+        /* --- PHOTO GALLERY (13 Photos) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .photo-card {
+            height: 280px;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- VIDEO SECTION (9 Videos) --- */
+        .video-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* The Exhaust Note Highlight */
+        .featured-video-wrapper {
+            width: 100%;
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid var(--primary-purple);
+            text-align: center;
+        }
+
+        .featured-video-wrapper h3 {
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .featured-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Other 8 Videos Grid */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .video-card video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-footer {
+            padding: 15px;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: black;
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .bio-container { padding: 30px 20px; }
+            .bio-text { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BIO / HERO SECTION -->
+    <header class="hero">
+        <div class="bio-container">
+            <h1>THAT FORGED MT</h1>
+            <p class="tagline">The Ultimate 2020 Yamaha MT-15 Build</p>
+            
+            <div class="bio-text">
+                <p>
+                    THAT FORGED MT is a 2020 BS4 Yamaha MT-15 that stands as a true representation of performance and personalization. Owned by <strong>@nibir_.n</strong> and directed by <strong>@bishnu.xo._</strong>, this machine may be underrated, but it is undeniably one of the most tastefully built MT-15s in the scene.
+                </p>
+                <br>
+                <p>
+                    Fully loaded with premium upgrades, the bike features a Valvetronic exhaust system, RGB DRLs, a custom head mask, aggressive body kit, and an underbelly enhancement that sharpens its street presence. Performance is elevated with a BMC air filter, while control and braking precision are refined through Brembo brake and clutch levers.
+                </p>
+                <br>
+                <p>
+                    Showcased through its dedicated Instagram handle <strong>@thatforged.mt</strong>, THAT FORGED MT reflects passion, precision, and individuality—making it a standout build in the MT community.
+                </p>
+            </div>
+
+            <div class="social-buttons">
+                <a href="https://www.instagram.com/thatforged.mt?igsh=MTR4d3J0Y3I4cWk1eg==" target="_blank" class="btn btn-primary">Follow @thatforged.mt</a>
+                <a href="https://www.instagram.com/nibir_.n?igsh=a3N3bjhqOXNnMnMx" target="_blank" class="btn btn-outline">Owner: @nibir_.n</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- PHOTO GALLERY SECTION -->
+    <section id="gallery">
+        <div class="section-header">
+            <h2>Build Gallery</h2>
+        </div>
+        <div class="gallery-grid">
+            <!-- 13 Photos Grid - Replace src with your actual photo files -->
+            <div class="photo-card"><img src="p1.jpeg" alt="MT-15 Photo 1"></div>
+            <div class="photo-card"><img src="p2.jpeg" alt="MT-15 Photo 2"></div>
+            <div class="photo-card"><img src="p3.jpeg" alt="MT-15 Photo 3"></div>
+            <div class="photo-card"><img src="p4.jpeg" alt="MT-15 Photo 4"></div>
+            <div class="photo-card"><img src="p5.jpeg" alt="MT-15 Photo 5"></div>
+            <div class="photo-card"><img src="p6.jpeg" alt="MT-15 Photo 6"></div>
+            <div class="photo-card"><img src="p7.jpeg" alt="MT-15 Photo 7"></div>
+            <div class="photo-card"><img src="p8.jpeg" alt="MT-15 Photo 8"></div>
+            <div class="photo-card"><img src="p9.jpeg" alt="MT-15 Photo 9"></div>
+            <div class="photo-card"><img src="p10.jpeg" alt="MT-15 Photo 10"></div>
+            <div class="photo-card"><img src="p11.jpeg" alt="MT-15 Photo 11"></div>
+            <div class="photo-card"><img src="p12.jpeg" alt="MT-15 Photo 12"></div>
+            <div class="photo-card"><img src="p13.jpeg" alt="MT-15 Photo 13"></div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section id="videos">
+        <div class="section-header">
+            <h2>Media & Sounds</h2>
+        </div>
+        
+        <div class="video-layout">
+            
+            <!-- 1. HIGHLIGHTED EXHAUST NOTE VIDEO -->
+            <div class="featured-video-wrapper">
+                <h3>🔥 Exhaust Note</h3>
+                <!-- MP4 format ensures compatibility across all browsers -->
+                <div class="featured-video">
+                    <video controls playsinline autoplay muted style="width:100%; height:100%;">
+                        <!-- Replace with your exhaust note MP4 file -->
+                        <source src="exhaust_note.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <!-- 2. REMAINING 8 VIDEOS -->
+            <div class="videos-grid">
+                <!-- Replace src with your MP4 video files -->
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 1</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 2</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video3.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 3</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video4.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 4</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video5.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 5</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video6.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 6</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video7.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 7</div>
+                </div>
+                <div class="video-card">
+                    <video controls playsinline>
+                        <source src="video8.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-footer">Video 8</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 THAT FORGED MT. Built for the MT Community.</p>
+    </footer>
+
+</body>
+</html>
